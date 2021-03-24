@@ -1,0 +1,12 @@
+
+<!-- <pre>
+  {{photos | json}}
+</pre> -->
+
+<div *ngFor="let p of photos">
+  <body *ngIf="p.albumId==albumId">
+    <h1>{{p.id}} - {{p.title}} <button type="submit" routerLink="/componenteservico1">Voltar</button></h1>
+    <img src="{{p.thumbnailUrl}}" alt="" >
+  </body>
+</div>
+

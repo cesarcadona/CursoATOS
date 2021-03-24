@@ -1,0 +1,25 @@
+
+<div style="text-align: center;">
+  <p>componente1 works!</p>
+
+  <img src="assets/Imagem1.png" alt="imagem 1">
+  <h5> Legenda para imagem</h5>
+</div>
+
+<div>
+  <input type="text" (input)="this.numero = $event.target.value"/>
+
+<hr>
+  <b>{{numero}}</b>
+
+
+</div>
+
+<hr>
+
+<div *ngIf="this.numero % 2 == 0; then blocoPar else blocoImpar"></div>
+<ng-template #blocoPar>Par</ng-template>
+<ng-template #blocoImpar>Impar</ng-template>
+
+<h1>Router link</h1>
+<a routerLink="/componente4" >componente 4</a>

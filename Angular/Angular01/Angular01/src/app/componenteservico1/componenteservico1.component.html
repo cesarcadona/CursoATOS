@@ -1,0 +1,15 @@
+<div *ngFor="let a of album">
+  <h1>
+    {{a.id}} - {{a.title}}
+    <button [routerLink]="['/componenteservico']"
+      [queryParams]="{ albumId: a.id }">
+      Selecionar
+    </button>
+  </h1>
+
+
+</div>
+
+
+
+
