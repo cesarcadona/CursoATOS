@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+
 import { Servico1Service } from './../services/servico1.service';
 import { Album } from './../models/Album.model';
 import { Component, OnInit } from '@angular/core';
@@ -12,10 +12,9 @@ export class Componenteservico1Component implements OnInit {
 
   album:Album;
   erro:any;
-  albumId:number;
 
 
-  constructor(private albumServico:Servico1Service, private router:ActivatedRoute) {
+  constructor(private albumServico:Servico1Service) {
 
     this.getter();
   }
@@ -36,16 +35,6 @@ export class Componenteservico1Component implements OnInit {
 
     );
   }
-
-  selecionar(album:Album){
-    if(confirm('Deseja selecionar este album?')){
-
-      console.log('album selecionado: ', album.id);
-
-    }
-
-  }
-
 
 
   ngOnInit(): void {

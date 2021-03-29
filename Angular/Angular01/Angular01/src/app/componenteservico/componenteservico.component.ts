@@ -41,6 +41,7 @@ export class ComponenteservicoComponent implements OnInit {
 
 
   ngOnInit(): void {
+
     this.route.queryParams
       .subscribe(params => {
 

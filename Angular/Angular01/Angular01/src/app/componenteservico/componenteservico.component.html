@@ -4,9 +4,9 @@
 </pre> -->
 
 <div *ngFor="let p of photos">
-  <body *ngIf="p.albumId==albumId">
+  <body *ngIf="p.albumId==albumId || albumId == null">
     <h1>{{p.id}} - {{p.title}} <button type="submit" routerLink="/componenteservico1">Voltar</button></h1>
-    <img src="{{p.thumbnailUrl}}" alt="" >
+    <img src="{{p.thumbnailUrl}}" alt="{{p.title}}" >
   </body>
 </div>
 
