@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+      
+   
+
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="pageTitle">Agenda de Clientes</ui:define>			
+		<ui:define name="content">
+			<h:form id="formPessoa">
+				<p:confirmPopup global="true">
+		            <p:commandButton value="Não" type="button" styleClass="ui-confirm-popup-no ui-button-flat"/>
+		            <p:commandButton value="Sim" type="button" styleClass="ui-confirm-popup-yes" />
+		        </p:confirmPopup>
+		        <p:outputPanel id="outPanPessoa" deferred="true" >
+		        	<div align="center">
+				      <p:card id="inputCard" style="width: 25rem; margin-bottom: 2em" >
+				      	<f:facet name="title">
+					        Cadastro:
+					    </f:facet>						      	
+					    <p:inputText value="#{pessoaController.pessoa.nome}" placeholder="Informe seu Nome" style="margin: 10px 10px;"/>
+					    <p:tooltip for="@previous" value="Nome" position="left"/>
+				        <p:inputText value="#{pessoaController.pessoa.email}" placeholder="Informe seu Email" style="margin: 10px 10px;"/>
+				        <p:tooltip for="@previous" value="Email" position="left"/>
+				        <p:inputText value="#{pessoaController.pessoa.cidade}" placeholder="Informe sua Cidade" style="margin: 10px 10px;"/>
+				        <p:tooltip for="@previous" value="Cidade" position="left"/>
+				        <p:inputMask value="#{pessoaController.pessoa.telefone}" mask="(99) 99999-9999"  validateMask="true" placeholder="Informe seu telefone"  style="margin: 10px 10px;"/>
+				        <p:tooltip for="@previous" value="Telefone" position="left"/>
+				        <div>
+				        
+				        <p:selectOneMenu id="option" value="#{pessoaController.pessoa.estado}" converter="#{estadoConverter}">
+		                    <f:selectItems value="#{estadoController.estados}" var="estado" itemLabel="#{estado.uf}" />
+		                </p:selectOneMenu>
+		                 <p:tooltip for="@previous" value="Estado" position="left"/>
+				        </div>
+				        <div>
+					        <p:commandButton action="#{pessoaController.salvar}" value="Salvar" update="formPessoa" ajax="true" styleClass="rounded-button ui-button-info" icon="pi pi-user-plus" style="margin: 10px 10px;"/>
+					        <p:commandButton action="#{pessoaController.cancelar}" value="Cancelar" update="formPessoa" ajax="true" rendered="#{pessoaController.editMode}" styleClass="rounded-button ui-button-info" icon="pi pi-times" style="margin: 10px 10px;"/>
+					        	
+					        
+					        <p:tooltip for="@previous" value="Cancela Editar" position="right"/>
+					        
+					        
+				        </div>
+					
+					  </p:card>
+		        	</div>
+		        </p:outputPanel>
+		        <div class="card">
+			        <p:dataTable id="dtPessoa" var="pessoa" value="#{pessoaController.pessoas}">
+			            <p:column headerText="ID">
+			                <h:outputText value="#{pessoa.id}" />
+			            </p:column>
+			
+						<p:column headerText="Nome">
+			                <h:outputText value="#{pessoa.nome}" />
+			            </p:column>
+			            
+			            <p:column headerText="Email">
+			                <h:outputText value="#{pessoa.email}" />
+			            </p:column>
+			
+			            <p:column headerText="Cidade">
+			                <h:outputText value="#{pessoa.cidade}" />
+			            </p:column>
+			
+			            <p:column headerText="Telefone">
+			                <h:outputText value="#{pessoa.telefone}" />
+			            </p:column>
+			            
+			            <p:column headerText="Estado">
+			                <h:outputText value="#{pessoa.estado.uf}" />
+			            </p:column>
+			            
+			            <p:column >
+			            	<p:commandButton  action="#{pessoaController.alterar(pessoa)}" update="formPessoa" ajax="true" value="Alterar" styleClass="rounded-button ui-button-success" icon="pi pi-refresh" style="margin: 10px 10px;">
+			            		<p:confirm type="popup" header="Confirmação" message="Tem certeza que deseja continuar?" icon="pi pi-exclamation-triangle"/>
+			            	</p:commandButton>
+			            	<p:commandButton action="#{pessoaController.excluir(pessoa)}" update="formPessoa:dtPessoa" ajax="true" value="Deletar" styleClass="rounded-button ui-button-danger" icon="pi pi-user-minus" style="margin: 10px 10px;">
+			            		<p:confirm type="popup" header="Confirmação" message="Tem certeza que deseja continuar?" icon="pi pi-exclamation-triangle"/>
+			            	</p:commandButton>
+			            </p:column>
+			        </p:dataTable>
+			    </div>
+		        
+		
+		        <div style="height:150px"></div>
+		
+		        
+		    </h:form>
+				
+			 
+		</ui:define>
+	</ui:composition>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<h:body>
+
+		<h:form >
+		        <p:carousel numVisible="1" circular="true" effect="easeOutStrong" autoPlayInterval="5000" value="#{carouselView.images}" var="img" responsive="true" 
+		        style="padding:2px;box-shadow:0 0 15px 4px rgba(0,0,0,0.06);border-radius:10px;background-color:#5d5f58" 
+		        itemStyle="height:250px;width:500px;">
+		            <div class="img" align="center">		                
+	                        <h:graphicImage value="#{img}"/>
+		                
+		            </div>
+		        </p:carousel>
+		     
+		     
+	   		
+		</h:form>
+		
+		
+	</h:body>
+</html>
